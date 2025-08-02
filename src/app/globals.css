@@ -4,8 +4,11 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 240, 253, 244; /* green-50 */
   --background-end-rgb: 255, 255, 255;
+  --agricultural-primary: 34, 197, 94; /* green-600 */
+  --agricultural-secondary: 59, 130, 246; /* blue-600 */
+  --agricultural-accent: 234, 179, 8; /* yellow-600 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,9 +43,21 @@ body {
   }
 }
 
-/* Agricultural theme colors */
+/* Agricultural theme colors and gradients */
 .agricultural-gradient {
-  background: linear-gradient(135deg, #8b6914 0%, #4a390b 100%);
+  background: linear-gradient(135deg, #16a34a 0%, #065f46 100%);
+}
+
+.farm-gradient {
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+}
+
+.harvest-gradient {
+  background: linear-gradient(135deg, #eab308 0%, #a16207 100%);
+}
+
+.sky-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
 }
 
 .livestock-card {
@@ -50,28 +65,166 @@ body {
 }
 
 .stat-card {
-  @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-sm;
+  @apply bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4 shadow-sm;
 }
 
-/* Touch-friendly mobile styles */
+/* Agricultural micro-interactions */
+.crop-grow {
+  animation: cropGrow 2s ease-in-out infinite;
+}
+
+.tractor-move {
+  animation: tractorMove 4s ease-in-out infinite;
+}
+
+.water-drop {
+  animation: waterDrop 1.5s ease-in-out infinite;
+}
+
+@keyframes cropGrow {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(2deg); }
+}
+
+@keyframes tractorMove {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+@keyframes waterDrop {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-5px) scale(1.1); opacity: 0.8; }
+}
+
+/* Touch-friendly mobile styles - optimized for agricultural professionals */
 .touch-target {
-  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
+  /* Increased from 44px to 48px for better accessibility */
 }
 
 .mobile-button {
-  @apply touch-target bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors;
+  @apply touch-target bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 active:bg-green-800 transition-all duration-200 transform active:scale-95;
+  /* Enhanced for agricultural theme with better feedback */
 }
 
-/* Loading animations */
+.primary-cta {
+  @apply mobile-button bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl;
+}
+
+.secondary-cta {
+  @apply touch-target border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white rounded-xl font-semibold transition-all duration-300;
+}
+
+/* Agricultural feature cards */
+.feature-card {
+  @apply bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-500 transform hover:scale-105 hover:shadow-2xl;
+}
+
+.feature-card:active {
+  @apply scale-100;
+  transition-duration: 100ms;
+}
+
+/* ROI Calculator styles */
+.roi-input {
+  @apply h-3 bg-white bg-opacity-20 rounded-lg appearance-none cursor-pointer;
+}
+
+.roi-input::-webkit-slider-thumb {
+  @apply appearance-none w-6 h-6 bg-white rounded-full shadow-lg cursor-pointer;
+}
+
+.roi-input::-moz-range-thumb {
+  @apply w-6 h-6 bg-white rounded-full shadow-lg cursor-pointer border-0;
+}
+
+/* Loading animations with agricultural theme */
 .skeleton {
-  @apply animate-pulse bg-gray-200 rounded;
+  @apply animate-pulse bg-green-100 rounded;
 }
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.bounce-gentle {
+  animation: bounceGentle 2s ease-in-out infinite;
+}
+
+.pulse-soft {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+/* Agricultural floating elements */
+.float-agricultural {
+  animation: floatAgricultural 3s ease-in-out infinite;
+}
+
+@keyframes floatAgricultural {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+/* Interactive testimonials */
+.testimonial-card {
+  @apply bg-gray-50 rounded-xl p-6 transition-all duration-300 cursor-pointer;
+}
+
+.testimonial-card:hover {
+  @apply shadow-lg transform scale-105;
+}
+
+/* Progress indicators for onboarding */
+.progress-dot {
+  @apply h-3 w-8 mx-1 rounded-full transition-all duration-300;
+}
+
+.progress-dot.active {
+  @apply bg-green-500 transform scale-110;
+}
+
+.progress-dot.inactive {
+  @apply bg-gray-200;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  .touch-target {
+    @apply min-h-[52px] min-w-[52px];
+    /* Even larger on mobile for easier touch */
+  }
+  
+  .feature-card {
+    @apply hover:scale-100 active:scale-95;
+    /* Disable hover effects on mobile, use active instead */
+  }
+  
+  .mobile-spacing {
+    @apply space-y-4 px-4;
+  }
 }
