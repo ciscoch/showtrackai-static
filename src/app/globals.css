@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* PWA specific styles */
+@media all and (display-mode: standalone) {
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Agricultural theme colors */
+.agricultural-gradient {
+  background: linear-gradient(135deg, #8b6914 0%, #4a390b 100%);
+}
+
+.livestock-card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow;
+}
+
+.stat-card {
+  @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-sm;
+}
+
+/* Touch-friendly mobile styles */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+}
+
+.mobile-button {
+  @apply touch-target bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors;
+}
+
+/* Loading animations */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
