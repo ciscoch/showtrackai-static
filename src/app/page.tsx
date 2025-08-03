@@ -2,6 +2,27 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { 
+  Tractor, 
+  ChartBar, 
+  Trophy, 
+  Smartphone, 
+  TrendingUp, 
+  Shield, 
+  Clock, 
+  Users, 
+  Star,
+  ArrowRight,
+  CheckCircle,
+  BarChart3,
+  FileText,
+  Target,
+  Sparkles,
+  Play,
+  ChevronDown
+} from 'lucide-react'
 
 export default function HomePage() {
   const router = useRouter()
@@ -50,25 +71,25 @@ export default function HomePage() {
     {
       title: "Welcome to Your FFA Journey",
       description: "Let's show you how ShowTrackAI can transform your livestock project in just 3 minutes.",
-      icon: "🐄",
+      icon: Tractor,
       action: "Start Journey"
     },
     {
       title: "Your Project Profile",
       description: "Tell us about your livestock project so we can personalize your experience.",
-      icon: "📝",
+      icon: FileText,
       action: "Continue"
     },
     {
       title: "See Your Potential",
       description: "Based on similar FFA projects, here's what you could achieve with ShowTrackAI.",
-      icon: "📈",
+      icon: TrendingUp,
       action: "View Results"
     },
     {
       title: "Ready to Excel?",
       description: "Join thousands of FFA students already using ShowTrackAI for their livestock projects.",
-      icon: "🏆",
+      icon: Trophy,
       action: "Get Access"
     }
   ]
@@ -76,7 +97,7 @@ export default function HomePage() {
   const features = [
     {
       id: 'tracking',
-      icon: '🐄',
+      icon: Tractor,
       title: 'Animal Health Tracking',
       description: 'Track weight gain, health records, feed consumption, and growth progress for your livestock.',
       details: {
@@ -87,7 +108,7 @@ export default function HomePage() {
     },
     {
       id: 'portfolio',
-      icon: '📊',
+      icon: BarChart3,
       title: 'AET Portfolio Builder',
       description: 'Automatically generate your AET portfolio entries and track degree requirements.',
       details: {
@@ -98,7 +119,7 @@ export default function HomePage() {
     },
     {
       id: 'show',
-      icon: '🏆',
+      icon: Trophy,
       title: 'Show Preparation',
       description: 'Manage show schedules, track preparation activities, and calculate project ROI.',
       details: {
@@ -132,7 +153,11 @@ export default function HomePage() {
 
           {/* Step Content */}
           <div className="text-center">
-            <div className="text-6xl mb-4">{currentStepData.icon}</div>
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 rounded-full professional-gradient flex items-center justify-center">
+                <currentStepData.icon className="w-10 h-10 text-white" />
+              </div>
+            </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-3">{currentStepData.title}</h3>
             <p className="text-gray-600 mb-6">{currentStepData.description}</p>
 
@@ -190,14 +215,15 @@ export default function HomePage() {
             {/* Action Buttons */}
             <div className="flex space-x-3">
               {currentStep > 0 && (
-                <button
+                <Button
                   onClick={() => setCurrentStep(currentStep - 1)}
-                  className="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                  variant="secondary"
+                  className="flex-1"
                 >
                   Back
-                </button>
+                </Button>
               )}
-              <button
+              <Button
                 onClick={() => {
                   if (currentStep < onboardingSteps.length - 1) {
                     setCurrentStep(currentStep + 1)
@@ -206,19 +232,22 @@ export default function HomePage() {
                     alert('Thanks for your interest! In a real app, this would start your student account setup.')
                   }
                 }}
-                className="flex-1 py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+                variant="agricultural"
+                className="flex-1"
               >
                 {currentStepData.action}
-              </button>
+              </Button>
             </div>
 
             {/* Close button */}
-            <button
+            <Button
               onClick={() => setShowOnboarding(false)}
-              className="mt-4 text-sm text-gray-500 hover:text-gray-700"
+              variant="ghost"
+              size="sm"
+              className="mt-4"
             >
               Maybe later
-            </button>
+            </Button>
           </div>
         </div>
       </div>
@@ -227,107 +256,131 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-yellow-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-lime-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="relative">
-            <div className="animate-spin rounded-full h-16 w-16 border-4 border-green-200 border-t-green-600 mx-auto mb-4"></div>
+          <div className="relative mb-8">
+            <div className="animate-spin rounded-full h-20 w-20 border-4 border-lime-200 border-t-lime-600 mx-auto"></div>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-2xl">🌱</span>
+              <Sparkles className="w-8 h-8 text-lime-600 animate-pulse" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">ShowTrackAI</h1>
-          <p className="text-gray-600 animate-pulse">Loading your livestock project tools...</p>
+          <h1 className="text-4xl font-black text-gray-900 mb-4">ShowTrackAI</h1>
+          <p className="text-lg text-gray-600 animate-pulse font-medium">Loading your professional livestock management tools...</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-yellow-50 relative overflow-hidden">
-      {/* Floating livestock elements */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-lime-50 relative overflow-hidden">
+      {/* Professional background elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl opacity-10 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>🐄</div>
-        <div className="absolute top-40 right-20 text-4xl opacity-10 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>🐷</div>
-        <div className="absolute bottom-40 left-20 text-5xl opacity-10 animate-bounce" style={{animationDelay: '2s', animationDuration: '3.5s'}}>🐑</div>
-        <div className="absolute bottom-20 right-10 text-3xl opacity-10 animate-bounce" style={{animationDelay: '0.5s', animationDuration: '4.5s'}}>🐐</div>
+        <div className="absolute top-20 left-10 opacity-5 animate-pulse">
+          <Tractor className="w-24 h-24 text-lime-600" />
+        </div>
+        <div className="absolute top-40 right-20 opacity-5 animate-pulse" style={{animationDelay: '1s'}}>
+          <BarChart3 className="w-16 h-16 text-green-600" />
+        </div>
+        <div className="absolute bottom-40 left-20 opacity-5 animate-pulse" style={{animationDelay: '2s'}}>
+          <Trophy className="w-20 h-20 text-amber-600" />
+        </div>
+        <div className="absolute bottom-20 right-10 opacity-5 animate-pulse" style={{animationDelay: '0.5s'}}>
+          <Target className="w-12 h-12 text-lime-600" />
+        </div>
       </div>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16 relative z-10">
-        <div className={`text-center mb-16 transition-all duration-1000 transform ${
+      <div className="container-responsive section-spacing relative z-10">
+        <div className={`text-center mb-20 transition-all duration-1000 transform ${
           heroAnimated ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <span className="animate-pulse">🏆</span>
-            <span>Used by 5,000+ FFA students nationwide</span>
+          <div className="inline-flex items-center space-x-3 bg-lime-50 text-lime-800 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-lime-200">
+            <Trophy className="w-5 h-5 text-lime-600" />
+            <span>Trusted by 5,000+ FFA students nationwide</span>
           </div>
           
-          <h1 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 leading-tight tracking-tight">
             FFA Livestock
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-              Project Management
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-lime-600 via-green-600 to-lime-700">
+              Project Excellence
             </span>
           </h1>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            The complete livestock project management platform for FFA students. Track animals, log daily activities, 
-            <span className="font-semibold text-green-700"> build your AET portfolio</span>, 
-            and advance your FFA degree requirements - all designed for student success.
+          <p className="text-xl md:text-2xl text-gray-600 mb-10 max-w-4xl mx-auto leading-relaxed font-medium">
+            The professional livestock management platform designed specifically for FFA students. Track animals, manage daily activities, 
+            <span className="font-bold text-lime-700"> automate your AET portfolio</span>, 
+            and accelerate your degree requirements with industry-leading tools.
           </p>
 
           {/* Value Proposition Pills */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['🐄 Animal Tracking', '📊 AET Portfolio', '🏆 Show Prep', '📱 Student-Friendly'].map((item, index) => (
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {[
+              { icon: Tractor, text: 'Animal Tracking' },
+              { icon: BarChart3, text: 'AET Portfolio' },
+              { icon: Trophy, text: 'Show Prep' },
+              { icon: Smartphone, text: 'Mobile-First' }
+            ].map((item, index) => (
               <div 
                 key={index}
-                className={`bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 text-sm font-medium transition-all duration-500 transform ${
+                className={`flex items-center space-x-2 bg-white px-5 py-3 rounded-full shadow-md border border-gray-100 text-sm font-semibold transition-all duration-500 transform hover:shadow-lg hover:-translate-y-1 ${
                   heroAnimated ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                 }`}
                 style={{transitionDelay: `${index * 100 + 600}ms`}}
               >
-                {item}
+                <item.icon className="w-5 h-5 text-lime-600" />
+                <span className="text-gray-700">{item.text}</span>
               </div>
             ))}
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Button
               onClick={handleGetStarted}
-              className="group bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden"
+              variant="agricultural"
+              size="xl"
+              className="group font-bold"
             >
-              <span className="relative z-10 flex items-center">
-                Start Your FFA Journey
-                <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-green-700 to-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-            </button>
+              Start Your FFA Journey
+              <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+            </Button>
             
-            <button
+            <Button
               onClick={calculateROI}
-              className="flex items-center text-green-700 font-semibold hover:text-green-800 transition-colors group"
+              variant="professional"
+              size="lg"
+              className="group"
             >
-              <span className="mr-2">📊</span>
+              <BarChart3 className="mr-2 w-5 h-5" />
               Calculate Your ROI
-              <svg className="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-8 text-sm text-gray-500">
-            <p>Approved by FFA • FERPA Compliant • 99.9% Uptime</p>
+          <div className="mt-12 flex flex-wrap justify-center items-center gap-6 text-sm text-gray-500">
+            <div className="flex items-center space-x-2">
+              <Shield className="w-4 h-4 text-lime-600" />
+              <span>FFA Approved</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-4 h-4 text-lime-600" />
+              <span>FERPA Compliant</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Clock className="w-4 h-4 text-lime-600" />
+              <span>99.9% Uptime</span>
+            </div>
           </div>
         </div>
 
         {/* Interactive Features Showcase */}
-        <div className="mb-16">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">How ShowTrackAI Works</h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-            Three powerful tools working together to streamline your FFA livestock project
-          </p>
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">How ShowTrackAI Works</h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
+              Three powerful tools working together to streamline your FFA livestock project and accelerate your success
+            </p>
+          </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
@@ -339,19 +392,17 @@ export default function HomePage() {
                 onClick={() => setSelectedFeature(selectedFeature === feature.id ? null : feature.id)}
               >
                 {/* Feature Icon with Animation */}
-                <div className="relative mb-6">
-                  <div className="text-6xl mb-4 transform transition-transform duration-300 group-hover:scale-110">
-                    {feature.icon}
+                <div className="relative mb-8">
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-2xl professional-gradient flex items-center justify-center transform transition-transform duration-300 group-hover:scale-110 shadow-lg">
+                    <feature.icon className="w-10 h-10 text-white" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
+                  <div className="absolute -top-1 -right-1 w-8 h-8 bg-lime-500 rounded-full flex items-center justify-center shadow-md">
+                    <CheckCircle className="w-5 h-5 text-white" />
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{feature.description}</p>
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{feature.title}</h3>
+                <p className="text-gray-600 mb-6 leading-relaxed text-lg">{feature.description}</p>
 
                 {/* Expandable Details */}
                 <div className={`transition-all duration-500 overflow-hidden ${
@@ -361,22 +412,22 @@ export default function HomePage() {
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-green-700 mb-2">Key Benefits:</h4>
-                        <ul className="space-y-1">
+                        <ul className="space-y-2">
                           {feature.details.benefits.map((benefit, idx) => (
                             <li key={idx} className="flex items-center text-sm text-gray-600">
-                              <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                              {benefit}
+                              <CheckCircle className="w-4 h-4 text-lime-500 mr-3 flex-shrink-0" />
+                              <span>{benefit}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-blue-700 mb-1">Technology:</h4>
+                        <h4 className="font-semibold text-lime-700 mb-1">Technology:</h4>
                         <p className="text-sm text-gray-600">{feature.details.technology}</p>
                       </div>
-                      <div className="bg-green-50 p-3 rounded-lg">
-                        <h4 className="font-semibold text-green-800 mb-1">Average Results:</h4>
-                        <p className="text-lg font-bold text-green-700">{feature.details.results}</p>
+                      <div className="bg-lime-50 p-4 rounded-lg border border-lime-100">
+                        <h4 className="font-semibold text-lime-800 mb-1">Average Results:</h4>
+                        <p className="text-lg font-bold text-lime-700">{feature.details.results}</p>
                       </div>
                     </div>
                   </div>
@@ -387,16 +438,11 @@ export default function HomePage() {
                   <span className="text-sm text-gray-500">
                     {selectedFeature === feature.id ? 'Click to collapse' : 'Click to learn more'}
                   </span>
-                  <svg 
+                  <ChevronDown
                     className={`w-5 h-5 text-gray-400 transition-transform duration-300 ${
                       selectedFeature === feature.id ? 'rotate-180' : ''
-                    }`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                    }`}
+                  />
                 </div>
 
                 {/* Hover Effect Overlay */}
@@ -406,17 +452,23 @@ export default function HomePage() {
           </div>
 
           {/* Feature Demo CTA */}
-          <div className="text-center mt-12">
-            <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
-              🎥 Watch Student Success Stories
-            </button>
+          <div className="text-center mt-16">
+            <Button variant="professional" size="lg" className="group">
+              <Play className="mr-2 w-5 h-5" />
+              Watch Student Success Stories
+              <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </Button>
           </div>
         </div>
 
         {/* Project Calculator Section */}
-        <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-2xl p-8 text-white mb-16">
-          <h2 className="text-4xl font-bold text-center mb-4">Calculate Your Project's Potential</h2>
-          <p className="text-center text-green-100 mb-8 text-lg">See how ShowTrackAI can improve your livestock project success</p>
+        <div className="professional-gradient rounded-3xl shadow-2xl p-8 md:p-12 text-white mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Calculate Your Project's Potential</h2>
+            <p className="text-xl text-lime-100 max-w-3xl mx-auto font-medium leading-relaxed">
+              See how ShowTrackAI can transform your livestock project success and accelerate your FFA journey
+            </p>
+          </div>
           
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
@@ -481,50 +533,64 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="text-center mt-8">
-              <button
+            <div className="text-center mt-12">
+              <Button
                 onClick={calculateROI}
                 disabled={isCalculating}
-                className="bg-white text-green-600 hover:bg-green-50 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+                variant="professional"
+                size="xl"
+                className="group font-bold"
               >
                 {isCalculating ? (
-                  <span className="flex items-center">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-green-600 mr-2"></div>
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-lime-600 mr-2"></div>
                     Calculating...
-                  </span>
+                  </>
                 ) : (
-                  'Get Detailed Project Report'
+                  <>
+                    <BarChart3 className="mr-2 w-5 h-5" />
+                    Get Detailed Project Report
+                    <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                  </>
                 )}
-              </button>
+              </Button>
             </div>
           </div>
         </div>
 
         {/* Social Proof & Results */}
-        <div className={`bg-white rounded-2xl shadow-xl p-8 mb-16 transition-all duration-1000 transform ${
+        <div className={`bg-white rounded-3xl shadow-xl p-8 md:p-12 mb-24 border border-gray-100 transition-all duration-1000 transform ${
           statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <h2 className="text-4xl font-bold text-center mb-4">Proven Results from FFA Students</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Join thousands of FFA students already excelling in their livestock projects</p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">Proven Results from FFA Students</h2>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto font-medium leading-relaxed">
+              Join thousands of FFA students already excelling in their livestock projects with ShowTrackAI
+            </p>
+          </div>
           
-          <div className="grid md:grid-cols-4 gap-8 text-center mb-12">
+          <div className="grid md:grid-cols-4 gap-8 text-center mb-16">
             {[
-              { value: '95%', label: 'Record Accuracy', icon: '📝', color: 'text-green-600' },
-              { value: '80%', label: 'Faster Portfolio Building', icon: '📊', color: 'text-blue-600' },
-              { value: '3x', label: 'Better Show Performance', icon: '🏆', color: 'text-yellow-600' },
-              { value: '24/7', label: 'Mobile Access', icon: '📱', color: 'text-purple-600' }
+              { value: '95%', label: 'Record Accuracy', icon: FileText, color: 'text-lime-600' },
+              { value: '80%', label: 'Faster Portfolio Building', icon: BarChart3, color: 'text-green-600' },
+              { value: '3x', label: 'Better Show Performance', icon: Trophy, color: 'text-amber-600' },
+              { value: '24/7', label: 'Mobile Access', icon: Smartphone, color: 'text-sky-600' }
             ].map((stat, index) => (
-              <div 
+              <Card 
                 key={index}
-                className={`transform transition-all duration-700 hover:scale-110 ${
+                className={`p-6 transform transition-all duration-700 hover:scale-105 cursor-pointer hover:shadow-lg ${
                   statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                 }`}
                 style={{transitionDelay: `${index * 200}ms`}}
               >
-                <div className="text-5xl mb-3">{stat.icon}</div>
-                <div className={`text-4xl font-bold mb-2 ${stat.color}`}>{stat.value}</div>
-                <p className="text-gray-600 font-medium">{stat.label}</p>
-              </div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center">
+                    <stat.icon className={`w-8 h-8 ${stat.color}`} />
+                  </div>
+                </div>
+                <div className={`text-4xl font-black mb-2 ${stat.color}`}>{stat.value}</div>
+                <p className="text-gray-600 font-semibold">{stat.label}</p>
+              </Card>
             ))}
           </div>
 
@@ -551,7 +617,11 @@ export default function HomePage() {
               }
             ].map((testimonial, index) => (
               <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-300">
-                <div className="text-yellow-400 text-xl mb-3">★★★★★</div>
+                <div className="flex justify-center mb-3">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-5 h-5 text-amber-400 fill-current" />
+                  ))}
+                </div>
                 <p className="text-gray-700 mb-4 italic">"{testimonial.quote}"</p>
                 <div className="border-t pt-4">
                   <p className="font-semibold text-gray-900">{testimonial.author}</p>
@@ -564,28 +634,47 @@ export default function HomePage() {
         </div>
 
         {/* Final CTA Section */}
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Ready to Excel in Your FFA Project?</h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Join over 5,000 FFA students who are already using ShowTrackAI to excel in their livestock projects.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <button
-              onClick={handleGetStarted}
-              className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
-            >
-              Start Your Student Account
-            </button>
-            <button className="text-green-700 font-semibold hover:text-green-800 transition-colors">
-              📚 See Chapter Discounts
-            </button>
+        <div className="bg-gradient-to-r from-lime-50 via-white to-green-50 rounded-3xl p-8 md:p-16 text-center border border-lime-100">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+              Ready to Excel in Your 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-600 to-green-600">FFA Project?</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-600 mb-12 font-medium leading-relaxed">
+              Join over 5,000 FFA students who are already using ShowTrackAI to excel in their livestock projects and accelerate their agricultural careers.
+            </p>
           </div>
           
-          <div className="flex justify-center items-center space-x-6 text-sm text-gray-500">
-            <span>✓ Student-friendly pricing</span>
-            <span>✓ Setup in under 5 minutes</span>
-            <span>✓ Teacher dashboard included</span>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+            <Button
+              onClick={handleGetStarted}
+              variant="agricultural"
+              size="xl"
+              className="group font-bold"
+            >
+              Start Your Student Account
+              <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button variant="professional" size="lg" className="group">
+              <Users className="mr-2 w-5 h-5" />
+              See Chapter Discounts
+              <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-600">
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-4 h-4 text-lime-600" />
+              <span className="font-medium">Student-friendly pricing</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-4 h-4 text-lime-600" />
+              <span className="font-medium">Setup in under 5 minutes</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <CheckCircle className="w-4 h-4 text-lime-600" />
+              <span className="font-medium">Teacher dashboard included</span>
+            </div>
           </div>
         </div>
 

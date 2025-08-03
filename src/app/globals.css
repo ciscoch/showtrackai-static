@@ -3,12 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 240, 253, 244; /* green-50 */
-  --background-end-rgb: 255, 255, 255;
-  --agricultural-primary: 34, 197, 94; /* green-600 */
-  --agricultural-secondary: 59, 130, 246; /* blue-600 */
-  --agricultural-accent: 234, 179, 8; /* yellow-600 */
+  --foreground-rgb: 31, 41, 55; /* gray-800 */
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 249, 250, 251; /* gray-50 */
+  
+  /* Professional Agricultural Color Palette */
+  --agricultural-primary: 101, 163, 13; /* lime-600 - fresh green */
+  --agricultural-secondary: 22, 163, 74; /* green-600 - forest green */
+  --agricultural-accent: 217, 119, 6; /* amber-600 - harvest gold */
+  --barn-red: 185, 28, 28; /* red-700 - classic barn red */
+  --sage-green: 134, 168, 131; /* custom sage green */
+  --earth-brown: 120, 113, 108; /* stone-500 - earth tone */
+  --sky-blue: 14, 165, 233; /* sky-500 - clear sky */
+  
+  /* Neutral Professional Colors */
+  --neutral-100: 245, 245, 245;
+  --neutral-200: 229, 229, 229;
+  --neutral-300: 212, 212, 212;
+  --neutral-400: 163, 163, 163;
+  --neutral-500: 115, 115, 115;
+  --neutral-600: 82, 82, 82;
+  --neutral-700: 64, 64, 64;
+  --neutral-800: 38, 38, 38;
+  --neutral-900: 23, 23, 23;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +44,46 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-feature-settings: 'kern', 'liga', 'clig', 'calt';
+  text-rendering: optimizeLegibility;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.heading-xl {
+  @apply text-5xl md:text-7xl font-black tracking-tight;
+}
+
+.heading-lg {
+  @apply text-4xl md:text-5xl font-black tracking-tight;
+}
+
+.heading-md {
+  @apply text-3xl md:text-4xl font-bold tracking-tight;
+}
+
+.heading-sm {
+  @apply text-2xl md:text-3xl font-bold tracking-tight;
+}
+
+.body-lg {
+  @apply text-xl md:text-2xl font-medium leading-relaxed;
+}
+
+.body-md {
+  @apply text-lg md:text-xl font-medium leading-relaxed;
+}
+
+.body-sm {
+  @apply text-base md:text-lg leading-relaxed;
 }
 
 @layer utilities {
@@ -43,21 +100,25 @@ body {
   }
 }
 
-/* Agricultural theme colors and gradients */
+/* Professional Agricultural Theme Gradients */
 .agricultural-gradient {
-  background: linear-gradient(135deg, #16a34a 0%, #065f46 100%);
+  background: linear-gradient(135deg, rgb(var(--agricultural-primary)) 0%, rgb(var(--agricultural-secondary)) 100%);
 }
 
 .farm-gradient {
-  background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+  background: linear-gradient(135deg, rgb(var(--agricultural-secondary)) 0%, rgb(var(--sage-green)) 100%);
 }
 
 .harvest-gradient {
-  background: linear-gradient(135deg, #eab308 0%, #a16207 100%);
+  background: linear-gradient(135deg, rgb(var(--agricultural-accent)) 0%, rgb(var(--barn-red)) 100%);
 }
 
 .sky-gradient {
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+  background: linear-gradient(135deg, rgb(var(--sky-blue)) 0%, rgb(var(--agricultural-secondary)) 100%);
+}
+
+.professional-gradient {
+  background: linear-gradient(135deg, rgb(var(--agricultural-primary)) 0%, rgb(var(--sky-blue)) 100%);
 }
 
 .livestock-card {
@@ -96,33 +157,81 @@ body {
   50% { transform: translateY(-5px) scale(1.1); opacity: 0.8; }
 }
 
-/* Touch-friendly mobile styles - optimized for agricultural professionals */
+/* Professional Touch-Friendly Styles */
 .touch-target {
   @apply min-h-[48px] min-w-[48px] flex items-center justify-center;
-  /* Increased from 44px to 48px for better accessibility */
+  /* Optimized for professional agricultural applications */
 }
 
-.mobile-button {
-  @apply touch-target bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 active:bg-green-800 transition-all duration-200 transform active:scale-95;
-  /* Enhanced for agricultural theme with better feedback */
+.professional-button {
+  @apply touch-target text-white rounded-xl font-semibold transition-all duration-300 transform active:scale-95 shadow-sm hover:shadow-md;
+  background: rgb(var(--agricultural-primary));
+}
+
+.professional-button:hover {
+  background: rgb(var(--agricultural-secondary));
+  transform: translateY(-1px);
 }
 
 .primary-cta {
-  @apply mobile-button bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl;
+  @apply professional-button font-bold py-4 px-8 text-lg shadow-lg hover:shadow-xl;
+  background: linear-gradient(135deg, rgb(var(--agricultural-primary)), rgb(var(--sky-blue)));
+}
+
+.primary-cta:hover {
+  background: linear-gradient(135deg, rgb(var(--agricultural-secondary)), rgb(var(--agricultural-primary)));
 }
 
 .secondary-cta {
-  @apply touch-target border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white rounded-xl font-semibold transition-all duration-300;
+  @apply touch-target rounded-xl font-semibold transition-all duration-300 py-3 px-6;
+  border: 2px solid rgb(var(--agricultural-primary));
+  color: rgb(var(--agricultural-primary));
+  background: transparent;
 }
 
-/* Agricultural feature cards */
+.secondary-cta:hover {
+  background: rgb(var(--agricultural-primary));
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(var(--agricultural-primary), 0.25);
+}
+
+.tertiary-cta {
+  @apply touch-target rounded-xl font-medium transition-all duration-300 py-2 px-4;
+  color: rgb(var(--agricultural-primary));
+  background: rgb(var(--neutral-100));
+}
+
+.tertiary-cta:hover {
+  background: rgb(var(--neutral-200));
+  color: rgb(var(--agricultural-secondary));
+}
+
+/* Professional Feature Cards */
 .feature-card {
-  @apply bg-white rounded-2xl shadow-lg p-6 cursor-pointer transition-all duration-500 transform hover:scale-105 hover:shadow-2xl;
+  @apply bg-white rounded-2xl p-8 cursor-pointer transition-all duration-300 border border-gray-100;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.feature-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+  border-color: rgb(var(--agricultural-primary));
 }
 
 .feature-card:active {
-  @apply scale-100;
+  transform: translateY(0);
   transition-duration: 100ms;
+}
+
+.professional-card {
+  @apply bg-white rounded-xl border border-gray-200 transition-all duration-300;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.professional-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-1px);
 }
 
 /* ROI Calculator styles */
@@ -225,6 +334,51 @@ body {
   }
   
   .mobile-spacing {
-    @apply space-y-4 px-4;
+    @apply space-y-6 px-4;
   }
+  
+  .mobile-padding {
+    @apply px-4 py-8;
+  }
+  
+  .mobile-text {
+    @apply text-base leading-relaxed;
+  }
+  
+  /* Improved mobile typography */
+  .heading-xl {
+    @apply text-4xl font-black;
+  }
+  
+  .heading-lg {
+    @apply text-3xl font-black;
+  }
+  
+  .body-lg {
+    @apply text-lg font-medium;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tablet-spacing {
+    @apply space-y-8 px-6;
+  }
+  
+  .tablet-padding {
+    @apply px-6 py-12;
+  }
+}
+
+/* Enhanced container styles */
+.container-responsive {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section-spacing {
+  @apply py-16 md:py-24 lg:py-32;
+}
+
+.card-spacing {
+  @apply p-6 md:p-8;
 }
