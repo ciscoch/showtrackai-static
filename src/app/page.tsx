@@ -10,16 +10,16 @@ export default function HomePage() {
   const [showOnboarding, setShowOnboarding] = useState(false)
   const [selectedFeature, setSelectedFeature] = useState(null)
   const [isCalculating, setIsCalculating] = useState(false)
-  const [farmSize, setFarmSize] = useState(100)
-  const [currentCosts, setCurrentCosts] = useState(50000)
+  const [animalCount, setAnimalCount] = useState(5)
+  const [projectBudget, setProjectBudget] = useState(2500)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  // Agricultural hero animation states
+  // Livestock project hero animation states
   const [heroAnimated, setHeroAnimated] = useState(false)
   const [statsVisible, setStatsVisible] = useState(false)
 
   useEffect(() => {
-    // Check if user is authenticated (mock for now)
+    // Check if student is authenticated (mock for now)
     // In real app, this would check Supabase auth state
     const mockAuth = false // Set to true to test dashboard redirect
     
@@ -48,63 +48,63 @@ export default function HomePage() {
 
   const onboardingSteps = [
     {
-      title: "Welcome to the Future of Farming",
-      description: "Let's show you how AI can transform your agricultural operations in just 3 minutes.",
-      icon: "🌾",
+      title: "Welcome to Your FFA Journey",
+      description: "Let's show you how ShowTrackAI can transform your livestock project in just 3 minutes.",
+      icon: "🐄",
       action: "Start Journey"
     },
     {
-      title: "Your Farm Profile",
-      description: "Tell us about your operation so we can personalize your experience.",
-      icon: "🚜",
+      title: "Your Project Profile",
+      description: "Tell us about your livestock project so we can personalize your experience.",
+      icon: "📝",
       action: "Continue"
     },
     {
       title: "See Your Potential",
-      description: "Based on farms like yours, here's what you could achieve with ShowTrackAI.",
+      description: "Based on similar FFA projects, here's what you could achieve with ShowTrackAI.",
       icon: "📈",
       action: "View Results"
     },
     {
-      title: "Ready to Transform?",
-      description: "Join thousands of farmers already using AI to optimize their operations.",
-      icon: "🎯",
+      title: "Ready to Excel?",
+      description: "Join thousands of FFA students already using ShowTrackAI for their livestock projects.",
+      icon: "🏆",
       action: "Get Access"
     }
   ]
 
   const features = [
     {
-      id: 'monitoring',
-      icon: '🌱',
-      title: 'Smart Crop Monitoring',
-      description: 'AI-powered analysis of crop health, growth patterns, and yield predictions.',
+      id: 'tracking',
+      icon: '🐄',
+      title: 'Animal Health Tracking',
+      description: 'Track weight gain, health records, feed consumption, and growth progress for your livestock.',
       details: {
-        benefits: ['Early disease detection', 'Optimal harvest timing', 'Yield optimization'],
-        technology: 'Satellite imagery + IoT sensors + Machine learning',
-        results: '25% average yield increase'
+        benefits: ['Daily weight tracking', 'Health record management', 'Growth pattern analysis'],
+        technology: 'Mobile app + Cloud sync + Analytics dashboard',
+        results: '95% improvement in record accuracy'
       }
     },
     {
-      id: 'analytics',
+      id: 'portfolio',
       icon: '📊',
-      title: 'Predictive Analytics',
-      description: 'Weather, soil, and market data insights for smarter decision making.',
+      title: 'AET Portfolio Builder',
+      description: 'Automatically generate your AET portfolio entries and track degree requirements.',
       details: {
-        benefits: ['Weather risk mitigation', 'Resource optimization', 'Market timing'],
-        technology: 'Big data + Weather APIs + Market analysis',
-        results: '30% reduction in input costs'
+        benefits: ['Auto-generated entries', 'Degree progress tracking', 'Portfolio organization'],
+        technology: 'Smart templates + Progress tracking + Export tools',
+        results: '80% faster portfolio completion'
       }
     },
     {
-      id: 'recommendations',
-      icon: '🤖',
-      title: 'AI Farm Assistant',
-      description: 'Personalized recommendations for every aspect of your operation.',
+      id: 'show',
+      icon: '🏆',
+      title: 'Show Preparation',
+      description: 'Manage show schedules, track preparation activities, and calculate project ROI.',
       details: {
-        benefits: ['Automated scheduling', 'Resource planning', 'Risk assessment'],
-        technology: 'Neural networks + Expert systems + Real-time data',
-        results: '40% time savings on planning'
+        benefits: ['Show calendar management', 'Preparation checklists', 'Cost tracking'],
+        technology: 'Calendar integration + Checklist system + Financial tracking',
+        results: '90% better show preparedness'
       }
     }
   ]
@@ -140,29 +140,29 @@ export default function HomePage() {
             {currentStep === 1 && (
               <div className="space-y-4 mb-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Farm Size (acres)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Number of Animals</label>
                   <input
                     type="range"
-                    min="10"
-                    max="1000"
-                    value={farmSize}
-                    onChange={(e) => setFarmSize(e.target.value)}
+                    min="1"
+                    max="20"
+                    value={animalCount}
+                    onChange={(e) => setAnimalCount(e.target.value)}
                     className="w-full"
                   />
-                  <div className="text-center text-lg font-semibold text-green-600">{farmSize} acres</div>
+                  <div className="text-center text-lg font-semibold text-green-600">{animalCount} animals</div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Annual Operating Costs</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Project Budget</label>
                   <input
                     type="range"
-                    min="10000"
-                    max="500000"
-                    step="5000"
-                    value={currentCosts}
-                    onChange={(e) => setCurrentCosts(e.target.value)}
+                    min="500"
+                    max="10000"
+                    step="250"
+                    value={projectBudget}
+                    onChange={(e) => setProjectBudget(e.target.value)}
                     className="w-full"
                   />
-                  <div className="text-center text-lg font-semibold text-green-600">${parseInt(currentCosts).toLocaleString()}</div>
+                  <div className="text-center text-lg font-semibold text-green-600">${parseInt(projectBudget).toLocaleString()}</div>
                 </div>
               </div>
             )}
@@ -172,16 +172,16 @@ export default function HomePage() {
                 <h4 className="font-semibold text-green-800 mb-3">Your Potential with ShowTrackAI:</h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span>Potential Yield Increase:</span>
-                    <span className="font-semibold text-green-600">+{Math.round(farmSize * 2.5)} bushels</span>
+                    <span>Time Saved on Records:</span>
+                    <span className="font-semibold text-green-600">{Math.round(animalCount * 2)} hours/month</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Annual Cost Savings:</span>
-                    <span className="font-semibold text-green-600">${Math.round(currentCosts * 0.3).toLocaleString()}</span>
+                    <span>Show Performance Improvement:</span>
+                    <span className="font-semibold text-green-600">+{Math.round(projectBudget * 0.15)} in winnings</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>ROI Timeline:</span>
-                    <span className="font-semibold text-green-600">6-8 months</span>
+                    <span>Portfolio Completion:</span>
+                    <span className="font-semibold text-green-600">80% faster</span>
                   </div>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function HomePage() {
                     setCurrentStep(currentStep + 1)
                   } else {
                     setShowOnboarding(false)
-                    alert('Thanks for your interest! In a real app, this would start your free trial.')
+                    alert('Thanks for your interest! In a real app, this would start your student account setup.')
                   }
                 }}
                 className="flex-1 py-3 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
@@ -236,7 +236,7 @@ export default function HomePage() {
             </div>
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">ShowTrackAI</h1>
-          <p className="text-gray-600 animate-pulse">Growing your agricultural insights...</p>
+          <p className="text-gray-600 animate-pulse">Loading your livestock project tools...</p>
         </div>
       </div>
     )
@@ -244,12 +244,12 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-yellow-50 relative overflow-hidden">
-      {/* Floating agricultural elements */}
+      {/* Floating livestock elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl opacity-10 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>🌾</div>
-        <div className="absolute top-40 right-20 text-4xl opacity-10 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>🚜</div>
-        <div className="absolute bottom-40 left-20 text-5xl opacity-10 animate-bounce" style={{animationDelay: '2s', animationDuration: '3.5s'}}>🌽</div>
-        <div className="absolute bottom-20 right-10 text-3xl opacity-10 animate-bounce" style={{animationDelay: '0.5s', animationDuration: '4.5s'}}>🐄</div>
+        <div className="absolute top-20 left-10 text-6xl opacity-10 animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>🐄</div>
+        <div className="absolute top-40 right-20 text-4xl opacity-10 animate-bounce" style={{animationDelay: '1s', animationDuration: '4s'}}>🐷</div>
+        <div className="absolute bottom-40 left-20 text-5xl opacity-10 animate-bounce" style={{animationDelay: '2s', animationDuration: '3.5s'}}>🐑</div>
+        <div className="absolute bottom-20 right-10 text-3xl opacity-10 animate-bounce" style={{animationDelay: '0.5s', animationDuration: '4.5s'}}>🐐</div>
       </div>
 
       {/* Hero Section */}
@@ -257,27 +257,27 @@ export default function HomePage() {
         <div className={`text-center mb-16 transition-all duration-1000 transform ${
           heroAnimated ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <div className="inline-flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <span className="animate-pulse">🔥</span>
-            <span>Trusted by 10,000+ farmers worldwide</span>
+          <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="animate-pulse">🏆</span>
+            <span>Used by 5,000+ FFA students nationwide</span>
           </div>
           
           <h1 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
             FFA Livestock
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-              Management Made Easy
+              Project Management
             </span>
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            The complete livestock management platform for FFA students. Track animals, log activities, 
+            The complete livestock project management platform for FFA students. Track animals, log daily activities, 
             <span className="font-semibold text-green-700"> build your AET portfolio</span>, 
-            and advance your FFA degree requirements all in one place.
+            and advance your FFA degree requirements - all designed for student success.
           </p>
 
           {/* Value Proposition Pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['🐄 Animal Tracking', '📊 AET Portfolio', '🏆 Degree Progress', '📱 Mobile Ready'].map((item, index) => (
+            {['🐄 Animal Tracking', '📊 AET Portfolio', '🏆 Show Prep', '📱 Student-Friendly'].map((item, index) => (
               <div 
                 key={index}
                 className={`bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 text-sm font-medium transition-all duration-500 transform ${
@@ -318,7 +318,7 @@ export default function HomePage() {
 
           {/* Trust Indicators */}
           <div className="mt-8 text-sm text-gray-500">
-            <p>Certified by USDA • ISO 27001 Security • 99.9% Uptime SLA</p>
+            <p>Approved by FFA • FERPA Compliant • 99.9% Uptime</p>
           </div>
         </div>
 
@@ -326,7 +326,7 @@ export default function HomePage() {
         <div className="mb-16">
           <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">How ShowTrackAI Works</h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-            Three powerful AI systems working together to optimize every aspect of your farm
+            Three powerful tools working together to streamline your FFA livestock project
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -408,49 +408,49 @@ export default function HomePage() {
           {/* Feature Demo CTA */}
           <div className="text-center mt-12">
             <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105">
-              🎥 Watch 2-Minute Demo
+              🎥 Watch Student Success Stories
             </button>
           </div>
         </div>
 
-        {/* ROI Calculator Section */}
+        {/* Project Calculator Section */}
         <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl shadow-2xl p-8 text-white mb-16">
-          <h2 className="text-4xl font-bold text-center mb-4">Calculate Your Farm's Potential</h2>
-          <p className="text-center text-green-100 mb-8 text-lg">See how much you could save and earn with ShowTrackAI</p>
+          <h2 className="text-4xl font-bold text-center mb-4">Calculate Your Project's Potential</h2>
+          <p className="text-center text-green-100 mb-8 text-lg">See how ShowTrackAI can improve your livestock project success</p>
           
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Input Section */}
               <div className="bg-white bg-opacity-10 rounded-xl p-6">
-                <h3 className="text-2xl font-semibold mb-4">Your Farm Details</h3>
+                <h3 className="text-2xl font-semibold mb-4">Your Project Details</h3>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Farm Size</label>
+                    <label className="block text-sm font-medium mb-2">Number of Animals</label>
                     <div className="flex items-center space-x-3">
                       <input
                         type="range"
-                        min="10"
-                        max="1000"
-                        value={farmSize}
-                        onChange={(e) => setFarmSize(e.target.value)}
+                        min="1"
+                        max="20"
+                        value={animalCount}
+                        onChange={(e) => setAnimalCount(e.target.value)}
                         className="flex-1 h-2 bg-white bg-opacity-20 rounded-lg appearance-none cursor-pointer"
                       />
-                      <span className="text-xl font-bold min-w-[80px]">{farmSize} acres</span>
+                      <span className="text-xl font-bold min-w-[80px]">{animalCount} animals</span>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Annual Operating Costs</label>
+                    <label className="block text-sm font-medium mb-2">Project Budget</label>
                     <div className="flex items-center space-x-3">
                       <input
                         type="range"
-                        min="10000"
-                        max="500000"
-                        step="5000"
-                        value={currentCosts}
-                        onChange={(e) => setCurrentCosts(e.target.value)}
+                        min="500"
+                        max="10000"
+                        step="250"
+                        value={projectBudget}
+                        onChange={(e) => setProjectBudget(e.target.value)}
                         className="flex-1 h-2 bg-white bg-opacity-20 rounded-lg appearance-none cursor-pointer"
                       />
-                      <span className="text-xl font-bold min-w-[120px]">${parseInt(currentCosts).toLocaleString()}</span>
+                      <span className="text-xl font-bold min-w-[120px]">${parseInt(projectBudget).toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -458,24 +458,24 @@ export default function HomePage() {
 
               {/* Results Section */}
               <div className="bg-white bg-opacity-10 rounded-xl p-6">
-                <h3 className="text-2xl font-semibold mb-4">Your Potential Returns</h3>
+                <h3 className="text-2xl font-semibold mb-4">Your Potential Benefits</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span>Increased Revenue:</span>
-                    <span className="text-2xl font-bold text-yellow-300">+${Math.round(farmSize * 125).toLocaleString()}</span>
+                    <span>Time Saved Monthly:</span>
+                    <span className="text-2xl font-bold text-yellow-300">{Math.round(animalCount * 2)} hours</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span>Cost Savings:</span>
-                    <span className="text-2xl font-bold text-green-300">-${Math.round(currentCosts * 0.3).toLocaleString()}</span>
+                    <span>Improved Show Performance:</span>
+                    <span className="text-2xl font-bold text-green-300">+{Math.round((projectBudget / 1000) * 15)}% placing</span>
                   </div>
                   <div className="border-t border-white border-opacity-20 pt-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold">Net Annual Benefit:</span>
+                      <span className="text-lg font-semibold">Portfolio Completion:</span>
                       <span className="text-3xl font-bold text-yellow-300">
-                        ${Math.round(farmSize * 125 + currentCosts * 0.3).toLocaleString()}
+                        80% faster
                       </span>
                     </div>
-                    <p className="text-sm text-green-100 mt-2">ROI: {Math.round(((farmSize * 125 + currentCosts * 0.3) / (farmSize * 50)) * 100)}% in first year</p>
+                    <p className="text-sm text-green-100 mt-2">Complete degree requirements in half the time</p>
                   </div>
                 </div>
               </div>
@@ -493,7 +493,7 @@ export default function HomePage() {
                     Calculating...
                   </span>
                 ) : (
-                  'Get Detailed ROI Report'
+                  'Get Detailed Project Report'
                 )}
               </button>
             </div>
@@ -504,15 +504,15 @@ export default function HomePage() {
         <div className={`bg-white rounded-2xl shadow-xl p-8 mb-16 transition-all duration-1000 transform ${
           statsVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <h2 className="text-4xl font-bold text-center mb-4">Proven Results from Real Farms</h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">Join thousands of farmers already transforming their operations</p>
+          <h2 className="text-4xl font-bold text-center mb-4">Proven Results from FFA Students</h2>
+          <p className="text-center text-gray-600 mb-12 text-lg">Join thousands of FFA students already excelling in their livestock projects</p>
           
           <div className="grid md:grid-cols-4 gap-8 text-center mb-12">
             {[
-              { value: '25%', label: 'Average Yield Increase', icon: '🌾', color: 'text-green-600' },
-              { value: '30%', label: 'Water Usage Reduction', icon: '💧', color: 'text-blue-600' },
-              { value: '40%', label: 'Operating Cost Savings', icon: '💰', color: 'text-yellow-600' },
-              { value: '24/7', label: 'Continuous Monitoring', icon: '🔄', color: 'text-purple-600' }
+              { value: '95%', label: 'Record Accuracy', icon: '📝', color: 'text-green-600' },
+              { value: '80%', label: 'Faster Portfolio Building', icon: '📊', color: 'text-blue-600' },
+              { value: '3x', label: 'Better Show Performance', icon: '🏆', color: 'text-yellow-600' },
+              { value: '24/7', label: 'Mobile Access', icon: '📱', color: 'text-purple-600' }
             ].map((stat, index) => (
               <div 
                 key={index}
@@ -532,22 +532,22 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "ShowTrackAI helped us increase corn yields by 28% while reducing water usage. It's like having an agricultural expert available 24/7.",
-                author: "Sarah Johnson",
-                farm: "Johnson Family Farms, Iowa",
-                crop: "Corn & Soybeans"
+                quote: "ShowTrackAI helped me organize my steer project perfectly. I finished my AET portfolio in half the time and won Grand Champion at our county fair!",
+                author: "Emma Martinez",
+                farm: "Riverside FFA Chapter, Texas",
+                crop: "Market Steer Project"
               },
               {
-                quote: "The predictive analytics saved us from a major pest outbreak. Early detection meant we saved 85% of our tomato crop.",
-                author: "Miguel Rodriguez",
-                farm: "Rodriguez Organic Farms, California",
-                crop: "Organic Vegetables"
+                quote: "Tracking my lamb's daily weight gain was so easy. The app reminded me of all my tasks and I earned my American Degree requirements faster than ever.",
+                author: "Jake Thompson",
+                farm: "Valley View FFA Chapter, Iowa",
+                crop: "Market Lamb Project"
               },
               {
-                quote: "ROI was positive within 6 months. The AI recommendations optimized our irrigation schedule and reduced costs by 35%.",
-                author: "David Chen",
-                farm: "Chen Agricultural Systems, Texas",
-                crop: "Cotton & Wheat"
+                quote: "My pig project records were perfect thanks to ShowTrackAI. I saved 5 hours per week and had more time to focus on training and showing.",
+                author: "Sophia Chen",
+                farm: "Mountain Vista FFA Chapter, Colorado",
+                crop: "Market Swine Project"
               }
             ].map((testimonial, index) => (
               <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-300">
@@ -556,7 +556,7 @@ export default function HomePage() {
                 <div className="border-t pt-4">
                   <p className="font-semibold text-gray-900">{testimonial.author}</p>
                   <p className="text-sm text-gray-600">{testimonial.farm}</p>
-                  <p className="text-xs text-green-600 font-medium">{testimonial.crop}</p>
+                  <p className="text-xs text-blue-600 font-medium">{testimonial.crop}</p>
                 </div>
               </div>
             ))}
@@ -565,9 +565,9 @@ export default function HomePage() {
 
         {/* Final CTA Section */}
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Ready to Transform Your Farm?</h2>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Ready to Excel in Your FFA Project?</h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Join over 10,000 farmers who are already using AI to grow more efficiently and profitably.
+            Join over 5,000 FFA students who are already using ShowTrackAI to excel in their livestock projects.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
@@ -575,17 +575,17 @@ export default function HomePage() {
               onClick={handleGetStarted}
               className="bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
             >
-              Start Your Free 30-Day Trial
+              Start Your Student Account
             </button>
             <button className="text-green-700 font-semibold hover:text-green-800 transition-colors">
-              📞 Schedule a Personal Demo
+              📚 See Chapter Discounts
             </button>
           </div>
           
           <div className="flex justify-center items-center space-x-6 text-sm text-gray-500">
-            <span>✓ No credit card required</span>
+            <span>✓ Student-friendly pricing</span>
             <span>✓ Setup in under 5 minutes</span>
-            <span>✓ 24/7 support included</span>
+            <span>✓ Teacher dashboard included</span>
           </div>
         </div>
 
