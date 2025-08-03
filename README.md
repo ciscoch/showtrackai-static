@@ -1,127 +1,245 @@
-# 🌟 ShowTrackAI - Static Site
+# ShowTrackAI - FFA Livestock Management Platform
 
-> **Elite livestock management app for FFA students - Now as a lightning-fast, offline-capable Progressive Web App**
+A comprehensive web application designed specifically for FFA (Future Farmers of America) students to manage their livestock projects, track AET (Agricultural Experience Tracker) hours, and monitor FFA degree progress.
 
-## 🎯 Overview
+## 🎯 Purpose
 
-ShowTrackAI Static is a complete conversion of the ShowTrackAI React Native application to a deployable static site. This version preserves **100% of the original functionality** while adding:
+ShowTrackAI bridges the gap between traditional livestock management and modern educational requirements for FFA students. It provides a professional-grade platform that helps students:
 
-- ⚡ **Lightning-fast performance** with static site generation
-- 📱 **Progressive Web App** capabilities (installable as native app)
-- 🌐 **Offline-first architecture** perfect for rural/barn locations
-- 🚀 **Deploy anywhere** - no server required
-- 💰 **Zero hosting costs** with static hosting platforms
+- **Track Livestock**: Complete animal management with photos, weights, health records
+- **Build AET Portfolio**: Log daily activities mapped to specific agricultural skills
+- **Monitor Expenses**: Financial tracking for project cost analysis
+- **Advance FFA Degrees**: Visual progress tracking for degree requirements
+- **Learn Agricultural Skills**: Integrated training modules and curriculum
 
-## ✨ Features
+## ✨ Key Features
 
-### 🐄 **Animal Management**
-- Complete CRUD operations for livestock
-- Weight tracking with analytics and growth charts
-- Multi-species support (cattle, sheep, goats, pigs, poultry)
-- Photo documentation with AI-powered insights
+### 🐄 Animal Management
+- Multi-species support (cattle, swine, sheep, goats, poultry)
+- Photo galleries and growth tracking
+- Weight and health record management
+- Timeline view of animal history
+- Cost analysis per animal
 
-### 📝 **Journal System**
-- **AET Skills Integration** - Career-focused learning tracking
-- **Time Tracking** - Precise activity duration recording
-- **Feed Data Management** - Quick-select and detailed tracking
-- **One-click Entry Creation** - Streamlined workflow matching mobile app
+### 📚 Activity Journal & AET Skills
+- Quick-click daily activity logging
+- Automatic AET skill mapping
+- Time tracking for degree requirements
+- Photo attachments for documentation
+- Skill progression analytics
 
-### 💰 **Financial Tracking**
-- AI-powered receipt processing with OpenAI Vision
-- Vendor analytics and cost optimization
-- Break-even analysis for FFA SAE projects
-- Budget tracking and forecasting
+### 💰 Financial Tracking
+- Categorized expense management (feed, medical, equipment, show costs)
+- Receipt photo uploads
+- Monthly and yearly financial reports
+- Cost-per-animal breakdowns
+- Budget planning tools
 
-### 🏥 **Medical Records**
-- Comprehensive health tracking with vital signs
-- Vaccination management with reminder systems
-- VetConnect integration for professional consultations
-- AI photo analysis for health assessment
+### 🏆 FFA Degree Progress
+- Visual progress indicators for all FFA degrees
+- Requirement checklists and documentation
+- Mentor/advisor approval workflows
+- Achievement timeline tracking
+- Certificate generation
 
-### 🎓 **FFA Integration**
-- Degree progress tracking (Discovery → American)
-- SAE project management with earnings tracking
-- Competition preparation and performance analytics
-- Standards alignment with AET competencies
+### 📱 Mobile-First Design
+- Progressive Web App (PWA) capabilities
+- Offline functionality for field use
+- Touch-optimized interfaces
+- Professional agricultural theme
+- Cross-platform compatibility
 
-### 👨‍👩‍👧‍👦 **Parent Dashboard**
-- Complete oversight of student activities
-- Evidence submission and review system
-- Progress monitoring and educational insights
-- COPPA-compliant privacy controls
+## 🚀 Technology Stack
 
-## 🚀 Quick Start
+### Frontend
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first styling
+- **Lucide React**: Modern icon library
+- **React Hook Form**: Form management
+- **Recharts**: Data visualization
+
+### Backend & Database
+- **Supabase**: PostgreSQL database with real-time features
+- **Row Level Security**: Data protection and privacy
+- **Authentication**: Secure user management
+- **File Storage**: Image and document uploads
+
+### Additional Technologies
+- **PWA**: Offline-first capabilities
+- **Zustand**: State management
+- **TanStack Query**: Server state management
+- **Zod**: Runtime validation
+- **Date-fns**: Date manipulation
+
+## 📁 Project Structure
+
+```
+src/
+├── app/                    # Next.js 15 App Router
+│   ├── dashboard/         # Main application dashboard
+│   ├── animals/           # Animal management pages
+│   ├── journal/           # Activity journal pages
+│   ├── expenses/          # Financial tracking pages
+│   ├── training/          # FFA curriculum pages
+│   └── progress/          # Degree tracking pages
+├── components/
+│   ├── ui/                # Base UI components (buttons, cards, inputs)
+│   ├── forms/             # Form components
+│   ├── charts/            # Data visualization components
+│   └── layout/            # Navigation and layout components
+├── lib/
+│   ├── supabase/          # Database client and helpers
+│   ├── hooks/             # Custom React hooks
+│   ├── utils/             # Utility functions
+│   └── types/             # TypeScript type definitions
+├── store/                 # Zustand state management
+└── docs/                  # Technical documentation
+```
+
+## 🛠 Installation & Setup
 
 ### Prerequisites
-- Node.js 18+ and npm
+- Node.js 18.0.0 or higher
+- npm 9.0.0 or higher
 - Supabase account (for backend services)
 
-### Installation
+### Development Setup
+
+1. **Clone the repository**
 ```bash
-# Clone the repository
-git clone https://github.com/ciscoch/showtrackai-static.git
+git clone https://github.com/your-org/showtrackai-static.git
 cd showtrackai-static
+```
 
-# Install dependencies
+2. **Install dependencies**
+```bash
 npm install
+```
 
-# Configure environment variables
-cp .env.example .env.local
-# Edit .env.local with your Supabase credentials
+3. **Environment Configuration**
+Create a `.env.local` file in the root directory:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-# Generate PWA icons
-npm run generate-icons
+4. **Database Setup**
+Run the SQL scripts in `docs/database-schema.sql` in your Supabase dashboard to create the required tables and functions.
 
-# Start development server
+5. **Start Development Server**
+```bash
 npm run dev
 ```
 
 Visit `http://localhost:3000` to see the application.
 
-## 📦 Deployment
+### Production Build
 
-### GitHub Pages (Automatic)
-This repository is configured with GitHub Actions for automatic deployment:
-
-1. **Enable GitHub Pages**: Go to Settings > Pages > Deploy from branch > `gh-pages`
-2. **Configure Secrets**: Add your environment variables in Settings > Secrets:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-3. **Deploy**: Push to `main` branch triggers automatic deployment
-
-**Live URL**: `https://ciscoch.github.io/showtrackai-static/`
-
-### Netlify (One-Click)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ciscoch/showtrackai-static)
-
-Or via CLI:
 ```bash
 npm run build
-npm run deploy:netlify
+npm start
 ```
 
-### Vercel (One-Click)
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ciscoch/showtrackai-static)
+## 🗄 Database Schema
 
-Or via CLI:
+The application uses a PostgreSQL database with the following core tables:
+
+- **users**: Student profiles and FFA chapter information
+- **animals**: Livestock records with species, breeds, and status
+- **weight_records**: Growth tracking data
+- **health_records**: Veterinary and health management
+- **journal_entries**: Daily activities and AET skill logging
+- **expenses**: Financial tracking and cost management
+- **aet_skills**: Master list of agricultural skills
+- **user_skill_progress**: Individual skill progression tracking
+- **ffa_degree_requirements**: Degree requirement definitions
+- **user_degree_progress**: Individual degree advancement tracking
+
+See `docs/technical-architecture.md` for detailed schema documentation.
+
+## 🎨 Design System
+
+The application uses a custom design system built on Tailwind CSS with:
+
+- **Agricultural Color Palette**: Green, blue, and earth tones
+- **Mobile-First Approach**: Optimized for touch interfaces
+- **Accessibility**: WCAG 2.1 AA compliance
+- **Responsive Typography**: Scales from mobile to desktop
+- **Component Library**: Reusable UI components
+
+## 📊 Features in Detail
+
+### Animal Management
+- **Multi-Species Support**: Cattle, swine, sheep, goats, poultry
+- **Growth Tracking**: Weight charts and growth rate analysis
+- **Health Records**: Vaccination schedules and medical history
+- **Photo Documentation**: Visual progress tracking
+- **Financial Analysis**: Cost per pound of gain calculations
+
+### AET Portfolio Building
+- **Activity Logging**: Quick-entry forms for daily tasks
+- **Skill Mapping**: Automatic connection to AET skill categories
+- **Time Tracking**: Precise hour logging for degree requirements
+- **Documentation**: Photo and note attachments
+- **Progress Analytics**: Visual skill development tracking
+
+### Financial Management
+- **Expense Categories**: Feed, medical, equipment, show, other
+- **Receipt Management**: Photo uploads and digital storage
+- **Cost Analysis**: Per-animal and per-category breakdowns
+- **Budget Planning**: Projected vs actual spending
+- **Profitability Tracking**: Revenue and cost analysis
+
+### FFA Degree Integration
+- **Greenhand Degree**: Foundation level requirements
+- **Chapter Degree**: Chapter-level achievement tracking
+- **State Degree**: State-level requirement monitoring
+- **American Degree**: Highest level FFA recognition
+- **Custom Requirements**: Flexible requirement configuration
+
+## 🔒 Security & Privacy
+
+- **Row Level Security**: Database-level access control
+- **Data Encryption**: All sensitive data encrypted at rest
+- **FERPA Compliance**: Educational privacy standards
+- **User Consent**: Clear data usage policies
+- **Audit Logging**: Activity tracking for compliance
+
+## 📱 Mobile & PWA Features
+
+- **Offline Functionality**: Core features work without internet
+- **Home Screen Installation**: Add to home screen capability
+- **Push Notifications**: Reminders and updates
+- **Camera Integration**: Photo capture for documentation
+- **Touch Optimization**: Finger-friendly interface design
+
+## 🚀 Deployment Options
+
+### Static Deployment
+- **Netlify**: Automated deployments with form handling
+- **Vercel**: Optimized for Next.js applications
+- **GitHub Pages**: Free hosting for open source projects
+- **AWS S3 + CloudFront**: Scalable static hosting
+
+### Full-Stack Deployment
+- **Vercel + Supabase**: Recommended for production
+- **Netlify + Supabase**: Alternative with great DX
+- **Custom VPS**: Self-hosted option for institutions
+
+## 🚀 Quick Start
+
+### Development
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
 npm run build
-npm run deploy:vercel
 ```
-
-### Other Platforms
-```bash
-# AWS S3 + CloudFront
-npm run deploy:aws
-
-# Firebase Hosting
-npm run deploy:firebase
-
-# Surge.sh
-npm run deploy:surge
-```
-
-## 🛠 Development
 
 ### Available Scripts
 ```bash
@@ -135,120 +253,32 @@ npm run generate-icons  # Generate PWA icons
 npm run analyze         # Analyze bundle size
 ```
 
-### Project Structure
-```
-src/
-├── app/                 # Next.js App Router pages
-│   ├── auth/           # Authentication pages
-│   ├── dashboard/      # Main dashboard
-│   ├── journal/        # Journal with AET skills
-│   ├── animals/        # Animal management
-│   ├── financial/      # Financial tracking
-│   ├── medical/        # Medical records
-│   └── ffa/           # FFA integration
-├── components/         # Reusable React components
-│   ├── ui/            # Base UI components
-│   ├── forms/         # Form components
-│   ├── charts/        # Data visualization
-│   └── layout/        # Layout components
-├── lib/               # Utilities and configurations
-├── hooks/             # Custom React hooks
-├── contexts/          # React contexts
-└── services/          # Business logic services
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-Create `.env.local` with:
+### Deployment Scripts
 ```bash
-# Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
-
-# App Configuration
-NEXT_PUBLIC_APP_URL=https://your-domain.com
-NEXT_PUBLIC_APP_NAME=ShowTrackAI
-NEXT_PUBLIC_APP_VERSION=1.0.0
-
-# Optional: AI Features
-NEXT_PUBLIC_OPENAI_API_KEY=your_openai_key_here
-
-# Optional: Analytics
-NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_id_here
+npm run deploy:netlify   # Deploy to Netlify
+npm run deploy:vercel    # Deploy to Vercel
+npm run deploy:github    # Deploy to GitHub Pages
+npm run deploy:surge     # Deploy to Surge.sh
+npm run deploy:aws       # Deploy to AWS S3
 ```
-
-### Supabase Setup
-1. Create a new Supabase project
-2. Run the database migrations from `/supabase/migrations/`
-3. Configure Row Level Security (RLS) policies
-4. Enable authentication providers as needed
-
-## 📱 PWA Features
-
-### Installation
-ShowTrackAI can be installed as a native app on:
-- **iOS**: Safari > Share > Add to Home Screen
-- **Android**: Chrome > Menu > Install App
-- **Desktop**: Chrome/Edge > Install button in address bar
-
-### Offline Functionality
-- Complete offline operation with IndexedDB storage
-- Automatic sync when internet connection is restored
-- Background updates and notifications
-- Service worker caching for instant loading
-
-## 🔒 Privacy & Compliance
-
-### Educational Privacy
-- **COPPA Compliant**: Safe for students under 13
-- **FERPA Aligned**: Protects educational records
-- **GDPR Ready**: European privacy compliance
-- **Data Minimization**: Only collect necessary information
-
-### Security Features
-- Content Security Policy (CSP)
-- XSS protection
-- Secure headers configuration
-- Data encryption at rest and in transit
-
-## 🎓 Educational Integration
-
-### AET Skills Framework
-- 8 competency categories with 40+ agricultural skills
-- Career pathway alignment and recommendations
-- Proficiency level tracking (Beginner → Expert)
-- Learning outcome assessment
-
-### FFA Standards Alignment
-- Automatic mapping to FFA degree requirements
-- SAE project integration and earnings tracking
-- Competition preparation and performance analytics
-- Standards-based competency tracking
-
-## 📊 Analytics & Monitoring
-
-### Built-in Analytics
-- User engagement and feature usage tracking
-- Performance monitoring with Core Web Vitals
-- Error reporting and debugging information
-- Educational progress and outcome metrics
-
-### Third-party Integration
-- Google Analytics 4 ready
-- Supabase Analytics integration
-- Custom event tracking capabilities
-- Privacy-compliant data collection
 
 ## 🤝 Contributing
 
-### Development Setup
+We welcome contributions from the agricultural education community!
+
+### Development Process
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and add tests
-4. Ensure all tests pass: `npm test`
-5. Run linting: `npm run lint`
-6. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Areas for Contribution
+- **Educational Content**: FFA curriculum integration
+- **Species-Specific Features**: Specialized tracking for different livestock
+- **Regional Adaptations**: State-specific FFA requirements
+- **Mobile Enhancements**: Native app development
+- **Accessibility**: Improved accessibility features
 
 ### Code Standards
 - TypeScript for type safety
@@ -256,33 +286,34 @@ ShowTrackAI can be installed as a native app on:
 - Jest for testing
 - Conventional commits for git messages
 
+## 📖 Documentation
+
+- **Technical Architecture**: `docs/technical-architecture.md`
+- **Database Schema**: `docs/database-schema.sql`
+- **API Documentation**: `docs/api-reference.md`
+- **User Guides**: `docs/user-guides/`
+- **Deployment Guide**: `DEPLOYMENT_GUIDE.md`
+
+## 🆘 Support
+
+- **Issues**: Report bugs and request features on GitHub
+- **Discussions**: Community support and questions
+- **Documentation**: Comprehensive guides and tutorials
+- **Email**: support@showtrackai.com
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
-
-### Documentation
-- [Deployment Guide](DEPLOYMENT_GUIDE.md)
-- [API Documentation](docs/api.md)
-- [Component Library](docs/components.md)
-- [Troubleshooting Guide](docs/troubleshooting.md)
-
-### Community
-- **Issues**: [GitHub Issues](https://github.com/ciscoch/showtrackai-static/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ciscoch/showtrackai-static/discussions)
-- **Email**: support@showtrack.ai
-
 ## 🙏 Acknowledgments
 
-- **FFA Organization** for agricultural education standards
-- **Supabase** for backend infrastructure
-- **Next.js** team for the amazing framework
-- **OpenAI** for AI-powered features
-- **Agricultural educators** who provided feedback and requirements
+- **National FFA Organization**: For their educational mission and resources
+- **Agricultural Educators**: For feedback and guidance on requirements
+- **Student Beta Testers**: For real-world testing and feedback
+- **Open Source Community**: For the amazing tools and libraries used
 
 ---
 
-**Built with ❤️ for FFA students and agricultural educators**
+**Built with ❤️ for the agricultural education community**
 
-Transform your livestock management with ShowTrackAI - where technology meets agricultural education!
+*Empowering the next generation of agricultural leaders through technology*

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function HomePage() {
+  const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [currentStep, setCurrentStep] = useState(0)
   const [showOnboarding, setShowOnboarding] = useState(false)
@@ -10,17 +12,27 @@ export default function HomePage() {
   const [isCalculating, setIsCalculating] = useState(false)
   const [farmSize, setFarmSize] = useState(100)
   const [currentCosts, setCurrentCosts] = useState(50000)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   // Agricultural hero animation states
   const [heroAnimated, setHeroAnimated] = useState(false)
   const [statsVisible, setStatsVisible] = useState(false)
 
   useEffect(() => {
+    // Check if user is authenticated (mock for now)
+    // In real app, this would check Supabase auth state
+    const mockAuth = false // Set to true to test dashboard redirect
+    
+    if (mockAuth) {
+      router.push('/dashboard')
+      return
+    }
+
     // Trigger hero animation on mount
     setTimeout(() => setHeroAnimated(true), 300)
     // Trigger stats animation after hero
     setTimeout(() => setStatsVisible(true), 1200)
-  }, [])
+  }, [router])
 
   const handleGetStarted = () => {
     setShowOnboarding(true)
@@ -251,21 +263,21 @@ export default function HomePage() {
           </div>
           
           <h1 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            From Farm to
+            FFA Livestock
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">
-              Future with AI
+              Management Made Easy
             </span>
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Join the agricultural revolution. ShowTrackAI transforms traditional farming into 
-            <span className="font-semibold text-green-700"> data-driven precision agriculture</span>, 
-            helping you grow more while using less.
+            The complete livestock management platform for FFA students. Track animals, log activities, 
+            <span className="font-semibold text-green-700"> build your AET portfolio</span>, 
+            and advance your FFA degree requirements all in one place.
           </p>
 
           {/* Value Proposition Pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {['🌱 25% Higher Yields', '💧 30% Water Savings', '💰 40% Cost Reduction', '🤖 24/7 AI Monitoring'].map((item, index) => (
+            {['🐄 Animal Tracking', '📊 AET Portfolio', '🏆 Degree Progress', '📱 Mobile Ready'].map((item, index) => (
               <div 
                 key={index}
                 className={`bg-white px-4 py-2 rounded-full shadow-sm border border-gray-200 text-sm font-medium transition-all duration-500 transform ${
@@ -284,7 +296,7 @@ export default function HomePage() {
               className="group bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center">
-                Start Your AI Farm Journey
+                Start Your FFA Journey
                 <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
